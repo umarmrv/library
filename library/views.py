@@ -11,7 +11,7 @@ def index(request):
 
 
 class BookView(generics.ListCreateAPIView):
-    queryset = Book.objects.order_by('published_date')
+    queryset = Book.objects.order_by('-id')
     serializer_class = BookSerializer
 
 
@@ -22,4 +22,4 @@ class BookView(generics.ListCreateAPIView):
 
 class BookDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = BookSerializer
-    queryset = Book.objects.order_by('published_date')
+    queryset = Book.objects.order_by('-id')
