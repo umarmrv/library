@@ -4,7 +4,7 @@ from django.utils import timezone
 # Create your models here.
 
 
-class Books(models.Model):
+class Book(models.Model):
     title = models.CharField(max_length=150)
     author = models.CharField(max_length=150)
     price = models.IntegerField()

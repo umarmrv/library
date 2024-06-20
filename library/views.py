@@ -1,24 +1,25 @@
-from django.shortcuts import render
+# from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Books
-from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveUpdateDestroyAPIView
-from .serializers import BooksSerializer
+from .models import Book
+from rest_framework import generics
+from .serializers import BookSerializer
 
 
 def index(request):
-    books = Books.objects.all()
+    books = Book.objects.all()
     return HttpResponse(b for b in books)
 
 
-class BooksView(CreateAPIView):
-    serializer_class = BooksSerializer
+class BookView(generics.ListCreateAPIView):
+    queryset = Book.objects.order_by('published_date')
+    serializer_class = BookSerializer
 
 
-class BooksList(ListAPIView):
-    serializer_class = BooksSerializer
-    queryset = Books.objects.all()
+# class BooksList(generics.ListAPIView):
+ #   serializer_class = BooksSerializer
+ #   queryset = Books.objects.all()
 
 
-class BooksDetail(RetrieveUpdateDestroyAPIView):
-    serializer_class = BooksSerializer
-    queryset = Books.objects.all()
+class BookDetail(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = BookSerializer
+    queryset = Book.objects.order_by('published_date')

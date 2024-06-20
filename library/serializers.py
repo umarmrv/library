@@ -1,8 +1,8 @@
 from rest_framework import serializers
-from .models import Books
+from .models import Book
 
 
-class BooksSerializer(serializers.ModelSerializer):
+class BookSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Books
+        model = Book
         fields = '__all__'
